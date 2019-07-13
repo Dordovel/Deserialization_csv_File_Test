@@ -95,7 +95,7 @@ void Table::initialization(std::string filePath)
         
         if(!des_list.empty())
         {
-            for(int a=0;a<des_list.size();++a)
+            for(size_t a=0;a<des_list.size();++a)
             {
                 this->insertToTable(des_list.at(a));
             }

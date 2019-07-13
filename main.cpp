@@ -2,7 +2,6 @@
 
 int main()
 {
-    
     Table table("Test_cpp.csv");
 
     std::cout<<"Max Index"<<std::endl;

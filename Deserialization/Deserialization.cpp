@@ -43,7 +43,7 @@ std::vector<Collection> deserialization(const std::vector<std::string>& list)
 
     std::vector<Collection> deserialization_list;
 
-    for (int a=0; a<list.size();++a)
+    for (size_t a=0; a<list.size();++a)
     {
         temp=str_parse(list.at(a));
 
