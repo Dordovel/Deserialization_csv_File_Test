@@ -18,7 +18,6 @@ void Table::showCollection(Collection collection)
 
 void Table::showMaxIndex()
 {
-    // temporary index:
     std::vector<boost::reference_wrapper<Collection const> > temporary(table.begin(), table.end());
 
     std::sort(temporary.begin(),temporary.end(),compare);
