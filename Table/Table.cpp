@@ -18,15 +18,21 @@ void Table::showCollection(Collection collection)
 
 void Table::showMaxIndex()
 {
-    // temporary index:
     std::vector<boost::reference_wrapper<Collection const> > temporary(table.begin(), table.end());
 
-    std::sort(temporary.begin(),temporary.end(),compare);
+    if(!temporary.empty())
+    {
+        std::sort(temporary.begin(),temporary.end(),compare);
 
-    Collection collection=temporary.at(temporary.size()-1);
+        Collection collection=temporary.at(temporary.size()-1);
 
-    this->showCollection(collection);
-
+        this->showCollection(collection);
+    }
+    else
+    {
+        std::cout<<"Not Found"<<std::endl;
+    }
+    
 }
 
 bool Table::compare(const Collection & c1,const Collection & c2)
@@ -44,6 +50,10 @@ void Table::findID(uint64_t id)
     {
         this->showCollection((*it));
     }
+    else
+    {
+        std::cout<<"Not Found"<<std::endl;
+    }
 }
 
 void Table::FindYear(unsigned int findTime)
@@ -52,15 +62,25 @@ void Table::FindYear(unsigned int findTime)
 
     time_t t;
 
-    for(const Collection &var : temporary)
+    if(!temporary.empty())
     {
-        t=var.date;
-
-        if(((gmtime (& t)->tm_year)+1900) == findTime)
+        for(const Collection &var : temporary)
         {
-            this->showCollection(var);
+            t=var.date;
+
+            if(((gmtime (& t)->tm_year)+1900) == findTime)
+            {
+                this->showCollection(var);
+                return;
+            }
+
         }
 
+        std::cout<<"Not Found"<<std::endl;
+
+    }else
+    {
+        std::cout<<"Not Found"<<std::endl;
     }
 }
 
@@ -69,11 +89,17 @@ void Table::initialization(std::string filePath)
 {
     auto list=readFile(filePath.c_str());
 
-    auto des_list=deserialization(list);
-
-    for(int a=0;a<des_list.size();++a)
+    if(!list.empty())
     {
-        this->insertToTable(des_list.at(a));
+        auto des_list=deserialization(list);
+        
+        if(!des_list.empty())
+        {
+            for(int a=0;a<des_list.size();++a)
+            {
+                this->insertToTable(des_list.at(a));
+            }
+        }
     }
 
 }
