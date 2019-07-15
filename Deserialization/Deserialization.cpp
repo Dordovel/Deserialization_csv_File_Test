@@ -12,11 +12,22 @@ std::vector<std::string> str_parse(std::string str)
 
     std::stringstream string_stream;
 
+    char c[2]={'\n','\r'};
 
+    char v;
+
+    for (size_t a=0; a<(sizeof(c)/sizeof(char));++a)
+    {
+        if(str.at(str.size()-1)==c[a])
+        {
+            v=c[a];
+            break;
+        }
+    }
 
     string_stream<<str;
 
-    std::getline(string_stream,temp,'\r');
+    std::getline(string_stream,temp,v);
 
     string_stream.clear();
 
