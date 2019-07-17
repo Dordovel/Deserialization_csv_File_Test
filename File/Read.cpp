@@ -21,6 +21,11 @@ std::vector<std::string> readFile(const char* filePath)
             }
 
         }
+        else
+        {
+            std::cout<<"File not found"<<std::endl;
+        }
+        
 
     }catch(std::exception & except)
     {
