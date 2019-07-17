@@ -17,6 +17,8 @@ std::vector<std::string> readFile(const char* filePath)
             {
                 list.push_back(str);
 
+                std::cout<<str<<std::endl;
+
                 str="";
             }
 

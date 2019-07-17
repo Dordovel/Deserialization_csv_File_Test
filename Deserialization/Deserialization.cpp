@@ -1,18 +1,10 @@
 #include"deserialization.h"
 
+#ifdef __linux__
 
-std::vector<std::string> str_parse(std::string str)
-{
-
-    std::vector<std::string> list;
-
-    std::string temp="";
-
-    std::string temp1="";
-
-    std::stringstream string_stream;
-
-    char c[2]={'\n','\r'};
+  std::string del_escape(std::string str)
+  {
+        char c[2]={'\n','\r'};
 
     char v;
 
@@ -25,22 +17,45 @@ std::vector<std::string> str_parse(std::string str)
         }
     }
 
+    std::stringstream string_stream;
+    
     string_stream<<str;
+
+    std::string temp;
 
     std::getline(string_stream,temp,v);
 
-    string_stream.clear();
+    return temp;
+  }
 
-    string_stream<<temp;
+#endif
 
+#ifdef _WIN32
 
+std::string del_escape(std::string str)
+{
+    return str;
+}
+
+#endif
+
+std::vector<std::string> str_parse(std::string str)
+{
+
+    std::vector<std::string> list;
+
+    std::string temp="";
+
+    std::string temp1="";
+
+    std::stringstream string_stream;
+
+    string_stream<<del_escape(str);
 
     while(std::getline(string_stream,temp1,';'))
     {
         list.push_back(temp1);
     }
-
-    
     
     return list;
 
