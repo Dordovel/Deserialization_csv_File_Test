@@ -20,6 +20,7 @@ std::vector<std::string> readFile(const char* filePath)
 
                 str="";
             }
+            fileReadStream.close();
 
             return list;
 
@@ -27,10 +28,10 @@ std::vector<std::string> readFile(const char* filePath)
 
     }catch(std::exception & except)
     {
-        std::cout<<"Read Error"<<std::endl;    
+        std::cout<<"Read Error"<<std::endl;
+        fileReadStream.close();
     }
 
-    fileReadStream.close();
-
+    
     return {};
 }
