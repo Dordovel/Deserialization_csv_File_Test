@@ -4,18 +4,6 @@
 
   std::string del_escape(std::string str)
   {
-        char c[2]={'\n','\r'};
-
-    char v;
-
-    for (size_t a=0; a<(sizeof(c)/sizeof(char));++a)
-    {
-        if(str.at(str.size()-1)==c[a])
-        {
-            v=c[a];
-            break;
-        }
-    }
 
     std::stringstream string_stream;
     
@@ -23,7 +11,7 @@
 
     std::string temp;
 
-    std::getline(string_stream,temp,v);
+    std::getline(string_stream,temp,'\r');
 
     return temp;
   }

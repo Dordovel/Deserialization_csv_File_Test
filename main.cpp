@@ -10,7 +10,7 @@ int main()
 
     std::cout<<"Find Id 100"<<std::endl;
 
-    table.findID(100);
+    table.findID(108);
 
     std::cout<<"Find Year 2019"<<std::endl;
 
