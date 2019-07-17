@@ -4,14 +4,13 @@ std::vector<std::string> readFile(const char* filePath)
 {
     std::ifstream fileReadStream(filePath,std::ios_base::in);
 
+    std::vector<std::string> list;
+
     try
     {
 
         if(fileReadStream.is_open())
         {
-
-            std::vector<std::string> list;
-
             std::string str="";
 
             while(getline(fileReadStream,str))
@@ -20,10 +19,6 @@ std::vector<std::string> readFile(const char* filePath)
 
                 str="";
             }
-            
-            fileReadStream.close();
-
-            return list;
 
         }
 
@@ -34,5 +29,5 @@ std::vector<std::string> readFile(const char* filePath)
     
     fileReadStream.close();
     
-    return {};
+    return list;
 }
